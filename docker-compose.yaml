@@ -12,7 +12,6 @@ services:
     expose:
       # Opens port 8080 on the container
       - '8000'
-    env_file: "./mcp-mysql-server/.env"
     environment:
       - MYSQL_HOST=172.28.1.2
       - MYSQL_PORT=${MYSQL_PORT}
