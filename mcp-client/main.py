@@ -9,7 +9,7 @@ from langchain_openai import ChatOpenAI
 # from langchain_ollama import ChatOllama
 
 model = ChatOpenAI(model="gpt-4o")
-# model = ChatOllama(temperature=0, model="llama3.2:3b")
+# model = ChatOllama(temperature=0, model="qwen2.5:14b")
 
 def parse_ai_messages(data):
     messages = dict(data).get('messages', [])
@@ -48,9 +48,12 @@ async def main(prompt: str):
             print(ai_msg)
 
 if __name__ == "__main__":
+    asyncio.set_event_loop(asyncio.SelectorEventLoop())
+    loop = asyncio.get_event_loop()
     while True:
         prompt = click.prompt("Please enter your prompt. E.g. get all content from database containing Kasper", type=click.STRING)
-        asyncio.run(main(prompt))
+        loop.run_until_complete(main(prompt=prompt))
         if not click.confirm("Do you want to perform another task?"):
             break
+    loop.close()
    
