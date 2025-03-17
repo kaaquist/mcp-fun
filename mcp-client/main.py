@@ -6,9 +6,10 @@ from langchain_mcp_adapters.client import MultiServerMCPClient
 from langgraph.prebuilt import create_react_agent
 from langchain_core.messages import HumanMessage, AIMessage
 from langchain_openai import ChatOpenAI
+# from langchain_ollama import ChatOllama
 
 model = ChatOpenAI(model="gpt-4o")
-
+# model = ChatOllama(temperature=0, model="llama3.2:3b")
 
 def parse_ai_messages(data):
     messages = dict(data).get('messages', [])
