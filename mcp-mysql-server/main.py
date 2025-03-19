@@ -76,7 +76,7 @@ async def read_resource(table: str) -> str:
                 return "\n".join([",".join(columns)] + result)
                 
     except Error as e:
-        logger.error(f"Database error reading resource {uri}: {str(e)}")
+        logger.error(f"Database error reading from table: {table}, error: {str(e)}")
         raise RuntimeError(f"Database error: {str(e)}")
 
 
@@ -94,7 +94,7 @@ async def ececute_query(query: str) -> str:
                 return f"Ran the following query on that database: {query}"
                 
     except Error as e:
-        logger.error(f"Database error reading resource {uri}: {str(e)}")
+        logger.error(f"Database error reading query:  {query}: {str(e)}")
         raise RuntimeError(f"Database error: {str(e)}")
 
 if __name__ == "__main__":
